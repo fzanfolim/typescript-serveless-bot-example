@@ -45,3 +45,94 @@ https://api.telegram.org/bot{{bot-token}}/setWebHook?url={{webhook-url}}/dev/sen
 
 https://github.com/googleapis/nodejs-dialogflow
 
+## CATEGORIA DE EXEMPLO PARA CRIAR NO DYNAMODB
+
+``` json
+{
+  "id": {
+    "S": "BEBIDA"
+  },
+  "createdAt": {
+    "N": "1629038068110"
+  },
+  "produto": {
+    "L": [
+      {
+        "S": "Coca Cola 600ml"
+      },
+      {
+        "S": "Guaraná 600ml"
+      },
+      {
+        "S": "Cerveja skol lata 250ml"
+      }
+    ]
+  },
+  "updatedAt": {
+    "N": "1629038068110"
+  }
+}
+
+{
+  "id": {
+    "S": "CALZONE"
+  },
+  "createdAt": {
+    "N": "1629038068110"
+  },
+  "produto": {
+    "L": [
+      {
+        "S": "Calabreza"
+      },
+      {
+        "S": "Mussarela"
+      },
+      {
+        "S": "Palmito"
+      },
+      {
+        "S": "4 Queijos"
+      }
+    ]
+  },
+  "updatedAt": {
+    "N": "1629038068110"
+  }
+}
+
+{
+  "id": {
+    "S": "PIZZA"
+  },
+  "createdAt": {
+    "N": "1629038068110"
+  },
+  "produto": {
+    "L": [
+      {
+        "S": "Calabresa"
+      },
+      {
+        "S": "Mussarela"
+      },
+      {
+        "S": "Palmito"
+      },
+      {
+        "S": "4 Queijos"
+      },
+      {
+        "S": "Portuguesa"
+      },
+      {
+        "S": "Napolitana"
+      }
+    ]
+  },
+  "updatedAt": {
+    "N": "1629038068110"
+  }
+}
+
+```
