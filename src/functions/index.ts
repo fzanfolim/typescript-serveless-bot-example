@@ -1,5 +1,4 @@
 export { default as hello } from './hello';
-export { default as telegram } from './telegram';
 export { default as sender } from './sender';
 export { default as receiver } from './receiver';
 export { default as validatorCpf } from './validatorCpf';
