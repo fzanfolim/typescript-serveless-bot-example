@@ -1,0 +1,1 @@
+sls --aws-profile pessoal logs -f $1 -t

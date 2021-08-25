@@ -1,0 +1,14 @@
+{
+  "Records":[
+      {
+          "messageAttributes":{
+              "AttributeNameHere":{
+                  "stringValue":"teste"
+              }
+              
+          },
+          "body":"{\"chatId\":\"1972796655\",\"query\":\"35243672831\",\"firstName\":\"felipe\",\"lastName\":\"zanfolim\"}"
+
+      }
+  ]
+}

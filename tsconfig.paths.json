@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@functions/*": ["src/functions/*"],
+      "@libs/*": ["src/libs/*"],
+      "@resources/*":["src/resources/*"]
+      // "/opt/nodejs/*":["src/layers/*"]
+      // "@teste/*":["src/layers/*"]
+    }
+  }
+}
+
+
