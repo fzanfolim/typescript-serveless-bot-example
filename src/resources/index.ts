@@ -16,5 +16,5 @@ export const RESOURCES = {
     listItensQueue:     listItensQueue,
     setProductQueue:    setProductQueue,
     orders:             orders,
-    // validadeCpfBus:     validadeCpfBus, 
+    validadeCpfBus:     validadeCpfBus, 
   } 

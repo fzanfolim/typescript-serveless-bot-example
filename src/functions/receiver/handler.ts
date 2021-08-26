@@ -1,15 +1,14 @@
 import 'source-map-support/register';
 
-import { SQSHandler } from 'aws-lambda';
+// import { SQSHandler } from 'aws-lambda';
 import { dialogFlowMessage, ResponseDialogflow } from "./dialogflow"
 import {API} from '@libs/api';
 import {sendMessage} from '@libs/sqs'
 import MESSAGE from '@libs/message'
+import EventBridge  from '@libs/eventBridge'
 
 
-const API_URL = `${process.env.TELEGRAM_URL}/sendMessage`
-
-const receiver: SQSHandler = async (event,context) => {
+const receiver= async (event,context) => {
   try {
     for (const record of event.Records) {
       // const messageAttributes: SQSMessageAttributes = record.messageAttributes;
@@ -55,7 +54,10 @@ const forwarding = async(response:ResponseDialogflow,context) => {
       break; 
     } 
     case 'Valida Cpf': { 
+
+      
       insertQueue(response,context,'validateCpfQueue')
+      insertEventBridge(response)
        
       break; 
     } 
@@ -98,8 +100,21 @@ const insertQueue = async (textDialog,context,queueName:string)=> {
 
 }
 
+const insertEventBridge = async (textDialog):Promise<void> => {
+
+  const eventBridge = new EventBridge({
+    EventBusName: 'validadeCpfBus',
+    Source: 'validatorCpf',
+    DetailType: 'validatorCpf',
+    Detail: textDialog 
+  })
+
+  await eventBridge.putEvents();
+
+}
 
 
 
 
 export const main = receiver;
+

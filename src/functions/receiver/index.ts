@@ -48,6 +48,15 @@ export default {
         {"Fn::GetAtt": [ 'setProductQueue', 'Arn' ]}
       ]
     },
+    {
+      Effect: 'Allow',
+      Action: [
+        'events:PutEvents',
+      ],
+      Resource: [
+        {"Fn::GetAtt": [ 'validadeCpfBus', 'Arn' ]}
+      ]
+    }
 
   ],
   events: [

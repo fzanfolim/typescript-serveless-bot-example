@@ -28,10 +28,20 @@ export default {
     },    
   ],
   events: [
+    // {
+    //   sqs: {
+    //     arn:{
+    //       "Fn::GetAtt": [ 'validadeCpfQueue', 'Arn' ]
+    //     }
+    //   }
+    // }
     {
-      sqs: {
-        arn:{
-          "Fn::GetAtt": [ 'validadeCpfQueue', 'Arn' ]
+      eventBridge: {
+        eventBus: '${self:custom.eventBusArn2}',
+        pattern:{
+          source:[
+            'validatorCpf'
+          ]
         }
       }
     }

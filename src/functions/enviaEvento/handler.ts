@@ -12,7 +12,7 @@ const sendEvent: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (even
     EventBusName: 'orders',
     Source: 'elk.orders',
     DetailType: 'order',
-    Detail: event 
+    Detail: event.body 
   })
 
   await eventBridge.putEvents();
