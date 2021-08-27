@@ -1,7 +1,7 @@
 
 import 'source-map-support/register';
 
-import { SQSHandler } from 'aws-lambda';
+// import { SQSHandler } from 'aws-lambda';
 import ClientModel, { ICliente }  from "../../models/client.model";
 import schema from './schema';
 import { API } from '@libs/api';

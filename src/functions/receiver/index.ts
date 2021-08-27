@@ -54,7 +54,7 @@ export default {
         'events:PutEvents',
       ],
       Resource: [
-        {"Fn::GetAtt": [ 'validadeCpfBus', 'Arn' ]}
+        {"Fn::GetAtt": [ 'chatPizzaBus', 'Arn' ]}
       ]
     }
 

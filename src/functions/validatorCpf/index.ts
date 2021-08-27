@@ -37,7 +37,7 @@ export default {
     // }
     {
       eventBridge: {
-        eventBus: '${self:custom.eventBusArn2}',
+        eventBus: '${self:custom.eventBusArn}',
         pattern:{
           source:[
             'validatorCpf'

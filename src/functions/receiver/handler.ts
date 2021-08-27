@@ -7,6 +7,15 @@ import {sendMessage} from '@libs/sqs'
 import MESSAGE from '@libs/message'
 import EventBridge  from '@libs/eventBridge'
 
+export enum Intent {
+  DEFAULT = 'Default Welcome Intent',
+  FALLBACK = 'Default Fallback Intent',
+  VALIDATE_CPF = 'Valida Cpf',
+  REPEAT_ORDER = 'Repeat Order',
+  SET_CATEGORY = 'Escolha da Categoria',
+  SET_PRODUCT = 'Escolha do Produto',
+
+}
 
 const receiver= async (event,context) => {
   try {
@@ -36,8 +45,7 @@ const forwarding = async(response:ResponseDialogflow,context) => {
   console.log(`|${response.intent}|`)
   switch(response.intent) { 
 
-    case 'Default Welcome Intent': { 
-      
+    case Intent.DEFAULT: { 
       await API.post(`/sendMessage`,{
         chat_id: response.chatId,
         text: MESSAGE.BOAS_VINDAS
@@ -45,7 +53,7 @@ const forwarding = async(response:ResponseDialogflow,context) => {
       break; 
     } 
 
-    case 'Default Fallback Intent': { 
+    case Intent.FALLBACK: { 
       await API.post(`/sendMessage`,{
         chat_id: response.chatId,
         text: response.response
@@ -53,26 +61,26 @@ const forwarding = async(response:ResponseDialogflow,context) => {
        
       break; 
     } 
-    case 'Valida Cpf': { 
-
-      
-      insertQueue(response,context,'validateCpfQueue')
-      insertEventBridge(response)
+    case Intent.VALIDATE_CPF: { 
+      // insertQueue(response,context,'validateCpfQueue')
+      await insertEventBridge(response,'validatorCpf')
        
       break; 
     } 
-    case 'Repeat Order': { 
-      insertQueue(response,context,'repeatOrderQueue')
+    case Intent.REPEAT_ORDER: { 
+      // await insertQueue(response,context,'repeatOrderQueue')
+      await insertEventBridge(response,'repeatOrder')       
+      break; 
+    } 
+    case Intent.SET_CATEGORY: { 
+      // await insertQueue(response,context,'listItensQueue')
+      await insertEventBridge(response,'listItens')       
        
       break; 
     } 
-    case 'Escolha da Categoria': { 
-      insertQueue(response,context,'listItensQueue')
-       
-      break; 
-    } 
-    case 'Escolha do Produto': { 
-      insertQueue(response,context,'setProductQueue')
+    case Intent.SET_PRODUCT: { 
+      // await insertQueue(response,context,'setProductQueue')
+      await insertEventBridge(response,'setProduct')
        
       break; 
     } 
@@ -100,12 +108,12 @@ const insertQueue = async (textDialog,context,queueName:string)=> {
 
 }
 
-const insertEventBridge = async (textDialog):Promise<void> => {
+const insertEventBridge = async (textDialog,source):Promise<void> => {
 
   const eventBridge = new EventBridge({
-    EventBusName: 'validadeCpfBus',
-    Source: 'validatorCpf',
-    DetailType: 'validatorCpf',
+    EventBusName: 'chatPizzaBus',
+    Source: source,
+    DetailType: source,
     Detail: textDialog 
   })
 

@@ -4,8 +4,7 @@ import { default as repeatOrderQueue } from './SQS/repeatOrderQueue';
 import { default as receiverQueue } from './SQS/receiverQueue';
 import { default as listItensQueue } from './SQS/listItensQueue';
 import { default as listTable } from './dynamoDB/list-table';
-import { default as orders } from './EventBridge/orders';
-import { default as validadeCpfBus } from './EventBridge/validadeCpfBus';
+import { default as chatPizzaBus } from './EventBridge/validadeCpfBus';
 
 
 export const RESOURCES = {
@@ -15,6 +14,5 @@ export const RESOURCES = {
     repeatOrderQueue:   repeatOrderQueue,
     listItensQueue:     listItensQueue,
     setProductQueue:    setProductQueue,
-    orders:             orders,
-    validadeCpfBus:     validadeCpfBus, 
+    chatPizzaBus:       chatPizzaBus, 
   } 
