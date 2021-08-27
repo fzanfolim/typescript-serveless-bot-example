@@ -6,51 +6,6 @@ export default {
     {
       Effect: 'Allow',
       Action: [
-        'sqs:SendMessage',
-      ],
-      Resource: [
-        {"Fn::GetAtt": [ 'receiverQueue', 'Arn' ]}
-      ]
-    },
-    {
-      Effect: 'Allow',
-      Action: [
-        'sqs:SendMessage',
-      ],
-      Resource: [
-        {"Fn::GetAtt": [ 'validadeCpfQueue', 'Arn' ]}
-      ]
-    },
-    {
-      Effect: 'Allow',
-      Action: [
-        'sqs:SendMessage',
-      ],
-      Resource: [
-        {"Fn::GetAtt": [ 'repeatOrderQueue', 'Arn' ]}
-      ]
-    },
-    {
-      Effect: 'Allow',
-      Action: [
-        'sqs:SendMessage',
-      ],
-      Resource: [
-        {"Fn::GetAtt": [ 'listItensQueue', 'Arn' ]}
-      ]
-    },
-    {
-      Effect: 'Allow',
-      Action: [
-        'sqs:SendMessage',
-      ],
-      Resource: [
-        {"Fn::GetAtt": [ 'setProductQueue', 'Arn' ]}
-      ]
-    },
-    {
-      Effect: 'Allow',
-      Action: [
         'events:PutEvents',
       ],
       Resource: [

@@ -3,7 +3,7 @@ import 'source-map-support/register';
 // import { SQSHandler } from 'aws-lambda';
 import { dialogFlowMessage, ResponseDialogflow } from "./dialogflow"
 import {API} from '@libs/api';
-import {sendMessage} from '@libs/sqs'
+// import {sendMessage} from '@libs/sqs'
 import MESSAGE from '@libs/message'
 import EventBridge  from '@libs/eventBridge'
 
@@ -20,9 +20,6 @@ export enum Intent {
 const receiver= async (event,context) => {
   try {
     for (const record of event.Records) {
-      // const messageAttributes: SQSMessageAttributes = record.messageAttributes;
-      // console.log('Message Attributtes -->  ', messageAttributes.AttributeNameHere.stringValue);
-      // console.log('Message Body -->  ', record.body);
 
       let responseDialog:ResponseDialogflow = await dialogFlowMessage(
         JSON.parse(record.body).message.text,
@@ -94,19 +91,19 @@ const forwarding = async(response:ResponseDialogflow,context) => {
 }
 
 
-const insertQueue = async (textDialog,context,queueName:string)=> {
+// const insertQueue = async (textDialog,context,queueName:string)=> {
 
-  const region = context.invokedFunctionArn.split(':')[3];
-  const accountId = context.invokedFunctionArn.split(':')[4];
-  const queueUrl: string = `https://sqs.${region}.amazonaws.com/${accountId}/${queueName}`
+//   const region = context.invokedFunctionArn.split(':')[3];
+//   const accountId = context.invokedFunctionArn.split(':')[4];
+//   const queueUrl: string = `https://sqs.${region}.amazonaws.com/${accountId}/${queueName}`
 
-  await sendMessage({
-    QueueUrl: queueUrl,
-    MessageBody: JSON.stringify(textDialog),
+//   await sendMessage({
+//     QueueUrl: queueUrl,
+//     MessageBody: JSON.stringify(textDialog),
     
-  })
+//   })
 
-}
+// }
 
 const insertEventBridge = async (textDialog,source):Promise<void> => {
 

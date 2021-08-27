@@ -6,15 +6,6 @@ export default {
     {
       Effect: 'Allow',
       Action: [
-        'sqs:SendMessage',
-      ],
-      Resource: [
-        {"Fn::GetAtt": [ 'validadeCpfQueue', 'Arn' ]}
-      ]
-    },
-    {
-      Effect: 'Allow',
-      Action: [
           'dynamodb:Query',
           'dynamodb:Scan',
           'dynamodb:GetItem',
@@ -28,13 +19,6 @@ export default {
     },    
   ],
   events: [
-    // {
-    //   sqs: {
-    //     arn:{
-    //       "Fn::GetAtt": [ 'validadeCpfQueue', 'Arn' ]
-    //     }
-    //   }
-    // }
     {
       eventBridge: {
         eventBus: '${self:custom.eventBusArn}',

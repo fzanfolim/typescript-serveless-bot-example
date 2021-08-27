@@ -3,15 +3,6 @@ import { handlerPath } from '@libs/handlerResolver';
 export default {
   handler: `${handlerPath(__dirname)}/handler.main`,
   iamRoleStatements: [
-    // {
-    //   Effect: 'Allow',
-    //   Action: [
-    //     'sqs:SendMessage',
-    //   ],
-    //   Resource: [
-    //     {"Fn::GetAtt": [ 'setProductQueue', 'Arn' ]}
-    //   ]
-    // },
     {
       Effect: 'Allow',
       Action: [
@@ -28,13 +19,6 @@ export default {
     },    
   ],
   events: [
-    // {
-    //   sqs: {
-    //     arn:{
-    //       "Fn::GetAtt": [ 'setProductQueue', 'Arn' ]
-    //     }
-    //   }
-    // }
     {
       eventBridge: {
         eventBus: '${self:custom.eventBusArn}',
